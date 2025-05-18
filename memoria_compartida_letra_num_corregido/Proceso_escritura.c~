@@ -1,0 +1,45 @@
+#include <stdio.h>         
+#include <stdlib.h>        
+#include <unistd.h>        
+#include <string.h>        
+#include <unistd.h>   
+
+#include <sys/ipc.h>
+#include <sys/sem.h>
+
+#include "semaforos.h"
+#include "funciones.h"    
+#include "memoria.h"      
+#include "def.h"  
+
+
+
+int main(int argc, char *argv[]) {
+
+    int id_memoria;
+    Datos *memoria = NULL; /*la estructura de los daots que cree la voy a poner en la cajita memoria*/
+    int i;
+    int num_var;
+    char letra_var;
+
+    /*creo la cajita para guardar la estructura que cree*/
+    memoria = (Datos*) creo_memoria(sizeof(Datos) * LARGO_CADENA , &id_memoria, clave);
+    iniciar_aleatorio();
+
+    while(1){
+        printf("Escribimos la memoria\n");
+        for(i=0; i<LARGO_CADENA ; i++){
+            num_var = num_aleatorio(1,10);
+            letra_var = letra_aleatorio('A', 'Z');
+
+            memoria[i].numero = num_var ;
+            memoria[i].letra = letra_var ;
+            printf("Escribí: %d %c\n", memoria[i].numero, memoria[i].letra);
+        }
+    }
+
+    printf("Escritura finalizada.\n");
+    sleep(1);
+    return 0;
+}
+

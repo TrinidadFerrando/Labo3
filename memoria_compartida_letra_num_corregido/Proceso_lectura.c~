@@ -1,0 +1,41 @@
+#include <stdio.h>         
+#include <stdlib.h>        
+#include <unistd.h>        
+#include <string.h>        
+
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+
+#include "semaforos.h"     
+#include "funciones.h"
+#include "memoria.h"      
+#include "def.h"           
+
+
+
+int main(int argc, char *argv[]){
+  int id_memoria;
+  Datos *memoria = NULL; /*la estructura de los daots que cree la voy a poner en la cajita memoria*/
+  int i;
+    
+  /*creo la cajita para guardar la estructura que cree*/
+  memoria = (Datos*) creo_memoria(sizeof(Datos) * LARGO_CADENA , &id_memoria, clave);
+
+  while(1) {
+  printf("Leemos la memoria\n");
+  for(i = 0; i < LARGO_CADENA; i++) {
+      printf("leo: %d %c\n", memoria[i].numero, memoria[i].letra);
+  }
+  printf("Lectura finalizada.\n");
+  sleep(100000);
+  }
+
+  shmdt((char*) memoria); /*dejo de apuntar a donde indique que apunte*/
+  shmctl(id_memoria, IPC_RMID, (struct shmid_ds*) NULL); 
+
+  return 0;
+}
+
+
+

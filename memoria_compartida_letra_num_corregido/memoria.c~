@@ -1,0 +1,26 @@
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "clave.h"
+#include "memoria.h"
+
+
+void *creo_memoria(int size, int* id_memoria, int clave) {
+    void *ptr_memoria;
+    int id = shmget(crear_clave(clave), size, 0777 | IPC_CREAT);
+    if (id == -1) {
+        printf("No consigo id para memoria compartida\n");
+        exit(1);
+    }
+
+    ptr_memoria = shmat(id, NULL, 0);
+    if (ptr_memoria == (void*) -1) {
+        printf("No consigo memoria compartida\n");
+        exit(1);
+    }
+
+    *id_memoria = id;
+    return ptr_memoria;
+}

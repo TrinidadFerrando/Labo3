@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+#include "funciones.h"
+
+
+int num_aleatorio(int desde, int hasta){
+    srand(time(0));
+    return rand() % (hasta-desde+1) + desde;
+}
+
+char letra_aleatorio(char desde, char hasta) {
+    return desde + rand() % (hasta - desde + 1);
+}
+
+

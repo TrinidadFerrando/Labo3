@@ -1,0 +1,6 @@
+# Ignorá todo por defecto
+*
+!.gitignore
+# ¡Pero no ignores esta carpeta ni su contenido!
+!/memoria_compartida_letra_num_corregido/
+!/memoria_compartida_letra_num_corregido/**
