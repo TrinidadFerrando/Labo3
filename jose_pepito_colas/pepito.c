@@ -13,8 +13,6 @@ int main(int argc, char *argv[]){
 	msg.evento = 0;
 	id_cola_mensajes = creo_id_cola_mensaje(CLAVE_BASE);
 
-
-
     printf("\n*** SOY DON PEPITO ***\n");
 
     while(msg.evento != EVT_FIN){
@@ -28,9 +26,9 @@ int main(int argc, char *argv[]){
         
         switch (msg.evento){
             case EVT_MENSAJE:
-                printf("Recibi un mensaje\n");
+                /*printf("Recibi un mensaje\n");*/
 				/*printf("Mensaje   %s\n", msg.char_mensaje);*/
-				sleep(INTERVALO);/*por qué uso aca esto y no un usleep?*/
+				usleep(500000);/*por qué uso aca esto y no un usleep?*/
 				
                 if(strcmp(msg.contenido_msg, "HOLA DON PEPITO")==0)
                     enviar_mensaje(id_cola_mensajes, MSG_JOSE, MSG_PEPITO, EVT_MENSAJE, "HOLA DON JOSE");
@@ -41,6 +39,7 @@ int main(int argc, char *argv[]){
                 break;
 
 			case EVT_FIN:
+				/*if(strcmp(msg.contenido_msg, "ADIOS DON PEPITO")==0)*/
                 enviar_mensaje(id_cola_mensajes , MSG_JOSE, MSG_PEPITO, EVT_FIN, "ADIOS DON JOSE");
 				printf("Recibi el final.\n");
 			break;

@@ -18,8 +18,6 @@
 #define EVT_MENSAJE		1
 #define EVT_FIN			2
  
-/**/
-#define INTERVALO 1
 
 
 #endif

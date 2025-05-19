@@ -30,16 +30,16 @@ int main(int argc, char *argv[]){
 		printf("Mensaje   %s\n", msg.contenido_msg);
 		switch (msg.evento){
             case EVT_MENSAJE:
-                printf("Recibi un mensaje\n");
+                /*printf("Recibi un mensaje\n");*/
 				/*printf("Mensaje   %s\n", msg.char_mensaje);*/
-				sleep(INTERVALO);/*por qué uso aca esto y no un usleep?*/
+				usleep(500000);/*por qué uso aca esto y no un usleep?*/
 				
                 if(strcmp(msg.contenido_msg, "HOLA DON JOSE")==0)
                     enviar_mensaje(id_cola_mensajes, MSG_PEPITO, MSG_JOSE, EVT_MENSAJE, "PASO USTED POR CASA");
 				else if(strcmp(msg.contenido_msg, "POR SU CASA YO PASE")==0)
 					enviar_mensaje(id_cola_mensajes, MSG_PEPITO, MSG_JOSE, EVT_MENSAJE, "VIO USTED A MI ABUELA");
 				else if(strcmp(msg.contenido_msg, "A SU ABUELA YO LA VI")==0)
-					enviar_mensaje(id_cola_mensajes, MSG_PEPITO, MSG_JOSE, EVT_MENSAJE, "ADIOS DON PEPITO");
+					enviar_mensaje(id_cola_mensajes, MSG_PEPITO, MSG_JOSE, EVT_FIN, "ADIOS DON PEPITO");
             break;
 
 			case EVT_FIN:
