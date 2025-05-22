@@ -27,7 +27,3 @@ sequenceDiagram
         Banco-->>Cajero: EVT_RTA_EXTRACCION_NOK
     end
 
-
-sumar:
-1.como ejecutar
-2.y lo de ncl y no usar MSJ_banco
