@@ -2,5 +2,6 @@
 *
 !.gitignore
 # ¡Pero no ignores esta carpeta ni su contenido!
-!/memoria_compartida_letra_num_corregido/
-!/memoria_compartida_letra_num_corregido/**
+!/Pienso_un_numero_Threads/
+!/Pienso_un_numero_Threads/**
+

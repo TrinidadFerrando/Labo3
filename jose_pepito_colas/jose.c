@@ -7,6 +7,7 @@
 #include "def.h"
 
 
+
 int main(int argc, char *argv[]){
 
 	int id_cola_mensajes;
