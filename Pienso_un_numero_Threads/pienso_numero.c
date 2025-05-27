@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 
     iniciar_aleatorio();
     numero_aleatorio = num_aleatorio(1, 99);
-    printf("El que los jugadores tienen que acertar es el: %d\n", numero_aleatorio);
+    printf("El número que los jugadores tienen que acertar es el: %d\n", numero_aleatorio);
 
     
     pthread_mutex_init(&mutex, NULL);
