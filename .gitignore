@@ -2,6 +2,6 @@
 *
 !.gitignore
 # ¡Pero no ignores esta carpeta ni su contenido!
-!/Pienso_un_numero_Threads/
-!/Pienso_un_numero_Threads/**
+!/Pienso_un_numero_Threads_Colas/
+!/Pienso_un_numero_Threads_Colas/**
 

@@ -10,11 +10,11 @@
 
 void *funcion_thread(void *datos) {
     datos_jugador *p_jugador = (datos_jugador *)datos;
-    int numero_aleatorio = p_jugador->numero_aleatorio;
-    int intentos;
-    int acerto = 0;
-    int usados[99] = {0};  /*los numeros ya usados*/
-    int esperar;
+    int numero_aleatorio = p_jugador->numero_aleatorio; /*número que debe adivinarse*/
+    int intentos; /*guarda el número generado aleatoriamente en cada intento*/
+    int acerto = 0;                                     /*bandera para indicar si se ha acertado el número*/
+    int usados[/*99*/ 20] = {0};      /*array local al hilo que guarda que números ya fueron intentados por ese jugador*/
+    int esperar;                                        /*variable para guardar el tiempo de espera entre intentos*/    
 
     while (!acerto) {
         pthread_mutex_lock(&mutex);
@@ -22,11 +22,11 @@ void *funcion_thread(void *datos) {
             pthread_mutex_unlock(&mutex);
             break; 
         }
-        intentos = num_aleatorio(1, 99);
+        intentos = num_aleatorio(1, /*99*/ 20);
         
         /*condicion para numeros no repetidos*/
         while (usados[intentos - 1]) { 
-            intentos = num_aleatorio(1, 99); 
+            intentos = num_aleatorio(1, /*99*/ 20); 
         }
         usados[intentos - 1] = 1;
         p_jugador->intentos++;
