@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     box Jugador
         participant Main
