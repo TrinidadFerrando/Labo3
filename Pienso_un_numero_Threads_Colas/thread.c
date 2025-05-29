@@ -8,6 +8,7 @@
 #include "global.h"
 
 
+
 void *funcion_thread(void *datos) {
     datos_jugador *p_jugador = (datos_jugador *)datos;
     int numero_aleatorio = p_jugador->numero_aleatorio; /*número que debe adivinarse*/

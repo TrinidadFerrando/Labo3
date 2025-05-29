@@ -6,6 +6,9 @@
 #include "global.h"     /* mutex, variables globales */
 #include "thread.h"     /* funciones de hilos */
 #include "funciones.h"  /*funciones del aleatorio*/
+#include "colas.h"
+#include "clave.h"
+#include "def.h"
 
 int main(int argc, char *argv[]) {
     int cant_jugadores = 1;
@@ -15,6 +18,7 @@ int main(int argc, char *argv[]) {
     
     pthread_t *p_hilos;
     datos_jugador *p_datos;
+    
 
     if (argc > 1) {
         cant_jugadores = atoi(argv[1]);

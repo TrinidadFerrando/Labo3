@@ -1,16 +1,24 @@
 ```mermaid
 sequenceDiagram
-    box Jugador
-        participant Hilo1
-        participant Hilo2
-        %% Podés seguir agregando más hilos acá
-    end
+    autonumber
     participant Tablero
+    participant Jugador
+    participant Hilo_1
+    participant Hilo_2
 
-    Hilo1->>Tablero: Enviar intento
-    Tablero-->>Hilo1: ¿Acertó?
+    Note over Jugador: Proceso Jugador crea hilos
+    Jugador ->> Hilo_1: pthread_create()
+    Jugador ->> Hilo_2: pthread_create()
 
-    Hilo2->>Tablero: Enviar intento
-    Tablero-->>Hilo2: ¿Acertó?
+    loop hasta que alguien acierte
+        Hilo_1 ->> Tablero: enviar_mensaje(MSG_TABLERO, id_hilo, EVT_CONSULTA_NUMERO, "n")
+        Tablero ->> Hilo_1: recibir_mensaje(id_hilo) → EVT_RTA_NOACERTO_SIGUE o EVT_RTA_ACERTO_FIN
 
-    Note over Tablero: Si nadie acierta,\nse sigue intentando
+        Hilo_2 ->> Tablero: enviar_mensaje(MSG_TABLERO, id_hilo, EVT_CONSULTA_NUMERO, "m")
+        Tablero ->> Hilo_2: recibir_mensaje(id_hilo) → EVT_RTA_NOACERTO_SIGUE o EVT_RTA_ACERTO_FIN
+    end
+
+    Tablero -->> Jugador: Termina juego cuando alguien acierta
+    Jugador ->> Hilo_1: pthread_join()
+    Jugador ->> Hilo_2: pthread_join()
+    Jugador ->> Jugador: Finaliza
