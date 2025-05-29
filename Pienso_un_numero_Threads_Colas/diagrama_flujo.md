@@ -9,22 +9,22 @@ sequenceDiagram
     Main->>Hilo1: Crear hilo 1
     Main->>Hilo2: Crear hilo 2
 
-    loop Mientras no acierte
-        Hilo1->>Tablero: MSG_INTENTO {id_jugador = 1, numero}
-        alt Acierto
-            Tablero-->>Hilo1: MSG_RESULTADO {acierto = 1}
-        else
-            Tablero-->>Hilo1: MSG_RESULTADO {acierto = 0}
+    alt Hilo 1 activo
+        Hilo1->>Tablero: EVT_INTENTO\ncontenido_msg = id_jugador: 1, número
+        alt [Número correcto]
+            Tablero-->>Hilo1: EVT_RTA_OK\ncontenido_msg = ¡Adivinaste!
+        else [Número incorrecto]
+            Tablero-->>Hilo1: EVT_RTA_NOK\ncontenido_msg = Intentá de nuevo
         end
     end
 
-    loop Mientras no acierte
-        Hilo2->>Tablero: MSG_INTENTO {id_jugador = 2, numero}
-        alt Acierto
-            Tablero-->>Hilo2: MSG_RESULTADO {acierto = 1}
-        else
-            Tablero-->>Hilo2: MSG_RESULTADO {acierto = 0}
+    alt Hilo 2 activo
+        Hilo2->>Tablero: EVT_INTENTO\ncontenido_msg = id_jugador: 2, número
+        alt [Número correcto]
+            Tablero-->>Hilo2: EVT_RTA_OK\ncontenido_msg = ¡Adivinaste!
+        else [Número incorrecto]
+            Tablero-->>Hilo2: EVT_RTA_NOK\ncontenido_msg = Intentá de nuevo
         end
     end
 
-    Note over Tablero: Si un hilo acierta,\navisa al resto para terminar
+    Note over Tablero: Si un hilo acierta, se notifica el fin del juego
