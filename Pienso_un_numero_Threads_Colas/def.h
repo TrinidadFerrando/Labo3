@@ -13,7 +13,16 @@
 /*evento*/
 #define EVT_MENSAJE	1
 
+#define EVT_NUMERO_OBJETIVO 1 /*El número que se debe adivinar*/
+
 #define EVT_CONSULTA_NUMERO 2 
 #define EVT_RTA_NOACERTO_SIGUE 3
 
 #define EVT_RTA_ACERTO_FIN	5	/*Acertó*/
+
+typedef struct mensaje {
+  long tipo_msg;
+  int remitente; /*emisor*/
+  int evento;
+  char contenido_msg[100];
+} mensaje;

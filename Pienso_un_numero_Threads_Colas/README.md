@@ -3,30 +3,21 @@ Ejecución:  ./pienso_numero 4 (si quiero 4 jugadores)
 
 Evita repeticiones por jugador, pero no entre todos los jugadores.
 
-El main hace:
-    -Lee por consola la cantidad de jugadores.
-    -Genera un número (aleatorio). 
-    -Crea un hilo por jugador, pasándole:
-                                        Su número de jugador
-                                        El número
-                                        Un puntero a alguien_acerto
-                                        Intentos realizados
+1. main.c (pienso_numero):
+    Genera el número a adivinar.
+    Lo envía al tablero.c al iniciar.
+    Crea los hilos jugadores.
+    Espera a que todos terminen.
 
-    -Espera a que todos los hilos terminen.
-    -Muestra quién ganó y cuántos intentos tuvo cada jugador.
+2. funcion_thread:
+    Igual a como ya lo tenés, pero consulta al tablero si acertó mediante colas.
+    Informa quién ganó y con cuántos intentos.
 
-Cada hilo: funcion_thread
-    -Cada 500–5000 ms genera un número aleatorio del 1 al 99 --> sin repetidos
-    -Si ya alguien acertó (alguien_acerto ≠ 0), termina.
-    -Si acierta, escribe su número en alguien_acerto usando mutex.
-    -Guarda cuántos intentos hizo y termina.
-
-typedef struct {
-    int id_jugagor;                    
-    int numero_aleatorio;
-    int *alguien_acerto;       
-    int intentos;
-} datos_jugador;
+3. tablero.c:
+    Al iniciar, espera un mensaje con el número a adivinar.
+    Luego escucha los intentos y responde con:
+    EVT_RTA_ACERTO_FIN si es correcto.
+    EVT_RTA_NO_ACIERTO si no.
 
 
 Única variable global permitida:  pthread_mutex_t mutex;

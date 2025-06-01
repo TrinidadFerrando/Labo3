@@ -15,6 +15,10 @@ int main(int argc, char *argv[]) {
     int id_cola_mensajes;
 	mensaje	msg;	
 
+    int numero_secreto;
+    int numero_recibido;
+    int juego_terminado = 0;
+
     msg.evento = 0;
 	id_cola_mensajes = creo_id_cola_mensaje(CLAVE_BASE);
 

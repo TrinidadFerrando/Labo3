@@ -56,13 +56,12 @@ datos_hilo = (la_variable_de_mi_estrucutra_de_dato*) malloc(sizeof(la_variable_d
 ---
 ### 6️⃣ Inicializo los atributos del hilo
 ```c
-pthread_attr_t atributos;
 pthread_attr_init(&atributos);
 pthread_attr_setdetachstate(&atributos, PTHREAD_CREATE_JOINABLE);
 
 
 ---
-### 7️⃣ Inicializel mutex
+### 7️⃣Inicializo el mutex
 ```c
 pthread_mutex_init(&mutex, NULL);
 
@@ -77,7 +76,7 @@ for (i = 0; i < cant_hilos; i++) {
         &id_hilo[i],
         &atributos,/*llamo a la direc de los atributos que declare*/ 
         funcion_thread/*aca pongo el nombre de la funcion que cree en threads.h*/, 
-        &datos_hilos[i]/*llamo a la direc del contenido de la estructura de datos para que loopee*/
+        (void *)&datos_hilos[i]/*llamo a la direc del contenido de la estructura de datos para que loopee*/
         );
 }
 
@@ -86,7 +85,7 @@ for (i = 0; i < cant_hilos; i++) {
 ```c
 while (condicion_de_trabajo) {
     pthread_mutex_lock(&mutex);
-    // Trabajo del hilo principal o coordinador
+    /*trabajo que tenga que hacer el hiilo*/
     pthread_mutex_unlock(&mutex);
     usleep(1000);  // espera en milisegundos
 }
